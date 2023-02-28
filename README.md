@@ -27,4 +27,4 @@ php artisan vendor:publish --provider="DenizTezcan\Channable\ChannableServicePro
 ```
 
 ### Configuration
-Please set your API key: `CHANNABLE_BEARER_TOKEN` in your .env file.
+Please set your API key: `CHANNABLE_BEARER_TOKEN` and `CHANNABLE_COMPANY_ID` in your .env file.
