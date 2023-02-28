@@ -1,0 +1,38 @@
+{
+    "name": "deniztezcan/laravel-channable",
+    "description": "Laravel package for the Channable API",
+    "type": "library",
+    "license": "MIT",
+    "version": "0.1.0",
+    "homepage": "https://github.com/deniztezcan/laravel-channable",
+    "authors": [
+        {
+            "name": "Deniz Tezcan",
+            "email": "deniz@nopulp.nl"
+        }
+    ],
+     "keywords": [
+        "api",
+        "php",
+        "channable",
+        "laravel"
+    ],
+    "autoload": {
+        "psr-4": { "DenizTezcan\\Channable\\" : "src/" }
+    },
+    "minimum-stability": "stable",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3|^7.0",
+        "illuminate/support": "5.4.*|5.5.*|5.6.*|5.7.*|5.8.*|^6.0|^7.0|^8.0|^9.0|^10.0",
+    },
+    "extra": {
+      "laravel": {
+        "providers": [
+          "DenizTezcan\\Channable\\ChannableServiceProvider"
+        ],
+        "aliases": {
+          "BolRetailerAPI": "DenizTezcan\\Channable\\Facades\\Channable"
+        }
+      }
+    }
+}
