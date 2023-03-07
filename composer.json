@@ -23,7 +23,7 @@
     "minimum-stability": "stable",
     "require": {
         "guzzlehttp/guzzle": "^6.3|^7.0",
-        "illuminate/support": "^8.0|^9.0|^10.0",
+        "illuminate/support": "^8.0|^9.0|^10.0"
     },
     "extra": {
       "laravel": {
