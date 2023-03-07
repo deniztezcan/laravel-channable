@@ -2,9 +2,9 @@
 
 namespace DenizTezcan\Channable\Entities;
 
+use DenizTezcan\Channable\Models\Event;
 use DenizTezcan\Channable\Models\Orders;
 use DenizTezcan\Channable\Models\Order as OrderModel;
-use DenizTezcan\Channable\Models\Shipment;
 use Throwable;
 
 class Order extends Entity
@@ -13,6 +13,15 @@ class Order extends Entity
     {
         try {
             $response = $this->client->authenticatedRequest('GET', $this->prepareUrl('/orders'));
+            return Orders::fromResponse((string) $response->getBody());
+        } catch (Throwable $e) {
+            // silence is golden.
+        }
+    }
+    public function allNotShipped(): Orders
+    {
+        try {
+            $response = $this->client->authenticatedRequest('GET', $this->prepareUrl('/orders?status=not_shipped'), ['status' => 'not_shipped']);
             return Orders::fromResponse((string) $response->getBody());
         } catch (Throwable $e) {
             // silence is golden.
@@ -29,7 +38,7 @@ class Order extends Entity
         }
     }
 
-    public function ship(int $orderId, string $tracking, string $transporter, array $items): Shipment
+    public function ship(int $orderId, string $tracking, string $transporter, array $items): Event
     {
         try {
             $response = $this->client->authenticatedRequest('POST', $this->prepareUrl('/orders/'.$orderId.'/shipment'),[
@@ -37,7 +46,19 @@ class Order extends Entity
                 'transporter' => $transporter,
                 'order_item_ids' => $items,
             ]);
-            return Shipment::fromResponse((string) $response->getBody());
+            return Event::fromResponse((string) $response->getBody());
+        } catch (Throwable $e) {
+            // silence is golden.
+        }
+    }
+
+    public function cancel(int $orderId, $items): Event
+    {
+        try {
+            $response = $this->client->authenticatedRequest('POST', $this->prepareUrl('/orders/'.$orderId.'/cancel'),[
+                'order_item_ids' => $items,
+            ]);
+            return Event::fromResponse((string) $response->getBody());
         } catch (Throwable $e) {
             // silence is golden.
         }

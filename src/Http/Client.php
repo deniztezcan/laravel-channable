@@ -29,7 +29,7 @@ class Client
             case 'GET':
                 return $this->get($endpoint, $parameters, $headers);
                 break;
-            case 'GET':
+            case 'POST':
                 return $this->post($endpoint, $parameters, $headers);
                 break;
         }

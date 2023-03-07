@@ -7,7 +7,10 @@ use DenizTezcan\Channable\Http\Client;
 
 class Channable
 {
-    protected Client $client;
+    public function __construct()
+    {
+        $this->client = new Client();
+    }
 
     public function order(string $projectId): Order
     {

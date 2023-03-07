@@ -2,9 +2,13 @@
 
 namespace DenizTezcan\Channable\Models;
 
-class Shipment extends Model
+class Event extends Model
 {
     public $status;
+    public $message;
+    public $response;
+    public $id;
+    public $data;
 
     public function validate(): void
     {
