@@ -16,6 +16,12 @@ class Client
         $this->baseUrl = "https://api.channable.com/v1/companies/" . config('channable.company-id');
     }
 
+    public function setTokens(string $token, string $companyId)
+    {
+        $this->token = $token;
+        $this->baseUrl = $companyId;
+    }
+
     public function authenticatedRequest(
         string $method, 
         string $endpoint, 
